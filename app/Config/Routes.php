@@ -25,7 +25,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-// $routes->setAutoRoute(false);
+//$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -39,8 +39,14 @@ $routes->get('/', 'Home::index',['as' => 'home']);
 $routes->match(['get','post'], '/login'   , 'Users::login'   , ['filter' => 'noauth','as' => 'login']);
 $routes->match(['get','post'], '/register', 'Users::register', ['filter' => 'noauth','as' => 'register']);
 $routes->match(['get','post'], '/profile' , 'Users::profile' , ['filter' => 'auth','as' => 'profile']);
+$routes->get('chat', 'Chat::index',['filter' => 'auth','as' => 'chat']);
+
 $routes->get('logout', 'Users::logout',['as' => 'logout']);
 $routes->get('dashboard', 'Dashboard::index',['filter' => 'auth','as' => 'dashboard']);
+
+
+$routes->cli('server', 'Server::index',['as' => 'server']);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
